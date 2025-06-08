@@ -3,10 +3,13 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "PhotographSignature";
-  src: url("/fonts/PhotographSignature.ttf") format("truetype");
+  font-family: "Photograph Signature";
+  src: url("/fonts/PhotographSignature.woff2") format("woff2"),
+    url("/fonts/PhotographSignature.woff") format("woff"),
+    url("/fonts/PhotographSignature.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 button {

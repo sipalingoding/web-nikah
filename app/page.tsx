@@ -142,7 +142,7 @@ export default function Home() {
             }}
           >
             <div className="w-full max-w-md">
-              <div className="relative w-[350px] pt-[177.78%]">
+              <div className="relative w-[410px] pt-[174.78%]">
                 {" "}
                 {/* 9:16 aspect ratio = 16 / 9 * 100 = 177.78% */}
                 <iframe
@@ -164,7 +164,7 @@ export default function Home() {
               backgroundPosition: "center",
             }}
           >
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 animate__fadeInDown">
               <Image
                 src={dataBride[currentIndexBride].src}
                 alt={`bg-${dataBride[currentIndexBride].id}`}
@@ -182,7 +182,7 @@ export default function Home() {
               </span>
             </div>
             <div className="font-signature text-3xl">&</div>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 animate__fadeInDown">
               <span className="font-signature text-3xl">
                 Salman Faris Siddiq
               </span>
@@ -326,12 +326,12 @@ export default function Home() {
             }}
           >
             <div className="flex-1 flex flex-col justify-center items-center gap-8 px-4">
-              <span className="text-xs text-center font-marcellus">
+              <span className="text-sm text-center font-marcellus">
                 Merupakan suatu kebahagiaan bagi kami, apabila
                 Bapak/Ibu/Saudara/i, hadir & memberikan doa restu kepada kedua
                 mempelai.
               </span>
-              <span className="text-sm font-marcellus">
+              <span className="text-base font-marcellus">
                 Hormat Kami Yang Mengundang
               </span>
               <span className="font-signature text-4xl">Karima & Salman</span>
