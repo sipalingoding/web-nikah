@@ -95,7 +95,7 @@ export default function Home() {
   return (
     <>
       <div
-        className="max-w-sm mx-auto p-4 h-screen"
+        className="max-w-sm mx-auto py-4 min-h-[100dvh]"
         style={{
           backgroundImage: "url('/home/bg.jpg')",
           backgroundSize: "cover",
