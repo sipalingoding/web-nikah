@@ -94,7 +94,7 @@ export default function Home() {
   return (
     <>
       <div
-        className="w-[500px] mx-auto p-4 h-screen bg-gray-200"
+        className="max-w-sm mx-auto p-4 h-screen"
         style={{
           backgroundImage: "url('/home/bg.jpg')",
           backgroundSize: "cover",
@@ -131,9 +131,9 @@ export default function Home() {
         />
       </div>
       {isStarted && (
-        <div ref={contentRef} className="flex flex-col w-[500px] mx-auto">
+        <div ref={contentRef} className="flex flex-col max-w-sm mx-auto">
           <div
-            className="p-4 h-screen animate__animated animate__fadeIn flex flex-col justify-around items-center bg-gray-200"
+            className="p-4 h-screen animate__animated animate__fadeIn flex flex-col justify-around items-center"
             style={{
               backgroundImage: "url('/bg-content.png')",
               backgroundSize: "cover",
@@ -141,7 +141,7 @@ export default function Home() {
             }}
           >
             <div className="w-full max-w-sm">
-              <div className="relative w-[380px] pt-[175.78%]">
+              <div className="relative w-[350px] pt-[177.78%]">
                 {" "}
                 {/* 9:16 aspect ratio = 16 / 9 * 100 = 177.78% */}
                 <iframe
@@ -156,7 +156,7 @@ export default function Home() {
             </div>
           </div>
           <div
-            className="p-4 h-screen animate__animated animate__fadeIn flex flex-col gap-2 justify-around items-center text-cokelatTua bg-gray-200"
+            className="p-4 h-screen animate__animated animate__fadeIn flex flex-col gap-2 justify-around items-center text-cokelatTua"
             style={{
               backgroundImage: "url('/bg-content.png')",
               backgroundSize: "cover",
@@ -200,7 +200,7 @@ export default function Home() {
             </div>
           </div>
           <div
-            className="p-4 h-screen animate__animated animate__fadeIn flex flex-col gap-2 justify-around items-center text-cokelatTua bg-gray-200"
+            className="p-4 h-screen animate__animated animate__fadeIn flex flex-col gap-2 justify-around items-center text-cokelatTua"
             style={{
               backgroundImage: "url('/bg-content.png')",
               backgroundSize: "cover",
@@ -255,7 +255,7 @@ export default function Home() {
             </button>
           </div>
           <div
-            className="p-4 h-screen animate__animated animate__fadeIn flex flex-col gap-24 justify-center items-center text-cokelatTua bg-gray-200"
+            className="p-4 h-screen animate__animated animate__fadeIn flex flex-col gap-24 justify-center items-center text-cokelatTua"
             style={{
               backgroundImage: "url('/bg-content.png')",
               backgroundSize: "cover",
@@ -264,7 +264,7 @@ export default function Home() {
           >
             <div className="text-cokelatTua flex flex-col gap-4 justify-center items-center">
               <span className="font-signature text-4xl">Wedding Gift</span>
-              <span className="font-marcellus text-sm text-center w-80">
+              <span className="font-marcellus text-sm text-center">
                 Doa Restu Anda merupakan karunia yang sangat berarti bagi kami.
                 Namun jika Anda ingin memberi hadiah kami sediakan fitur berikut
               </span>
@@ -317,7 +317,7 @@ export default function Home() {
             </div>
           </div>
           <div
-            className="h-screen animate__animated animate__fadeIn flex flex-col items-center text-cokelatTua bg-gray-200"
+            className="h-screen animate__animated animate__fadeIn flex flex-col items-center text-cokelatTua"
             style={{
               backgroundImage: "url('/bg-content.png')",
               backgroundSize: "cover",
@@ -325,15 +325,15 @@ export default function Home() {
             }}
           >
             <div className="flex-1 flex flex-col justify-center items-center gap-8 px-4">
-              <span className="text-sm text-center font-marcellus w-80">
+              <span className="text-xs text-center font-marcellus">
                 Merupakan suatu kebahagiaan bagi kami, apabila
                 Bapak/Ibu/Saudara/i, hadir & memberikan doa restu kepada kedua
                 mempelai.
               </span>
-              <span className="text-base font-marcellus">
+              <span className="text-sm font-marcellus">
                 Hormat Kami Yang Mengundang
               </span>
-              <span className="font-signature text-5xl">Karima & Salman</span>
+              <span className="font-signature text-4xl">Karima & Salman</span>
             </div>
 
             <Image
