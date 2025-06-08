@@ -1,15 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Marcellus } from "next/font/google";
+import { Poppins } from "next/font/google";
+import "animate.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const poppins = Poppins({
   subsets: ["latin"],
+  weight: ["400", "600"], // contoh: regular & semi-bold
+  variable: "--font-poppins",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const marcellus = Marcellus({
   subsets: ["latin"],
+  weight: "400",
+  variable: "--font-marcellus",
 });
 
 export const metadata: Metadata = {
@@ -25,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${marcellus.variable} ${poppins.variable} font-poppins font-marcellus antialiased bg-[#e3ddd6]`}
       >
         {children}
       </body>
