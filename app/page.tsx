@@ -74,6 +74,7 @@ export default function Home() {
   const handleStart = () => {
     const audio = audioRef.current;
     if (audio) {
+      audio.load();
       audio
         .play()
         .then(() => {
@@ -110,6 +111,7 @@ export default function Home() {
           <button
             className="bg-cokelat text-white px-4 py-2 rounded-full flex justify-center gap-2"
             onClick={handleStart}
+            onTouchStart={handleStart}
           >
             <Image
               src="/open-folder.svg"
