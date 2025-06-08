@@ -134,7 +134,7 @@ export default function Home() {
       {isStarted && (
         <div ref={contentRef} className="flex flex-col max-w-md mx-auto">
           <div
-            className="p-4 h-screen animate__animated animate__fadeIn flex flex-col justify-around items-center"
+            className="p-8 h-screen animate__animated animate__fadeIn flex flex-col justify-around items-center"
             style={{
               backgroundImage: "url('/bg-content.png')",
               backgroundSize: "cover",
@@ -142,7 +142,7 @@ export default function Home() {
             }}
           >
             <div className="w-full max-w-md">
-              <div className="relative w-[410px] pt-[174.78%]">
+              <div className="relative w-[380px] pt-[175.78%]">
                 {" "}
                 {/* 9:16 aspect ratio = 16 / 9 * 100 = 177.78% */}
                 <iframe
@@ -164,7 +164,7 @@ export default function Home() {
               backgroundPosition: "center",
             }}
           >
-            <div className="flex flex-col gap-4 animate__fadeInDown">
+            <div className="flex flex-col gap-4 animate__animated animate__fadeInLeft animate__slower">
               <Image
                 src={dataBride[currentIndexBride].src}
                 alt={`bg-${dataBride[currentIndexBride].id}`}
