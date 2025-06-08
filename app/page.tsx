@@ -94,7 +94,7 @@ export default function Home() {
   return (
     <>
       <div
-        className="max-w-sm mx-auto p-4 h-screen"
+        className="max-w-sm mx-auto p-4 h-screen bg-gray-200"
         style={{
           backgroundImage: "url('/home/bg.jpg')",
           backgroundSize: "cover",
@@ -107,17 +107,17 @@ export default function Home() {
             <p className="text-xs">Kepada Yth: Bapak/Ibu/Saudara/i</p>
             <p className="font-sm font-marcellus">Tamu Undangan</p>
           </span>
-          <button className="bg-cokelat text-white px-4 py-2 rounded-full flex justify-center gap-2">
+          <button
+            className="bg-cokelat text-white px-4 py-2 rounded-full flex justify-center gap-2"
+            onClick={handleStart}
+          >
             <Image
               src="/open-folder.svg"
               alt="Open Folder Icon"
               width={16}
               height={16}
             />
-            <span
-              className="text-xs font-poppins font-semibold text-putih"
-              onClick={handleStart}
-            >
+            <span className="text-xs font-poppins font-semibold text-putih">
               Buka Undangan
             </span>
           </button>
@@ -133,7 +133,7 @@ export default function Home() {
       {isStarted && (
         <div ref={contentRef} className="flex flex-col max-w-sm mx-auto">
           <div
-            className="p-4 h-screen animate__animated animate__fadeIn flex flex-col justify-around items-center"
+            className="p-4 h-screen animate__animated animate__fadeIn flex flex-col justify-around items-center bg-gray-200"
             style={{
               backgroundImage: "url('/bg-content.png')",
               backgroundSize: "cover",
@@ -156,7 +156,7 @@ export default function Home() {
             </div>
           </div>
           <div
-            className="p-4 h-screen animate__animated animate__fadeIn flex flex-col gap-2 justify-around items-center text-cokelatTua"
+            className="p-4 h-screen animate__animated animate__fadeIn flex flex-col gap-2 justify-around items-center text-cokelatTua bg-gray-200"
             style={{
               backgroundImage: "url('/bg-content.png')",
               backgroundSize: "cover",
@@ -200,7 +200,7 @@ export default function Home() {
             </div>
           </div>
           <div
-            className="p-4 h-screen animate__animated animate__fadeIn flex flex-col gap-2 justify-around items-center text-cokelatTua"
+            className="p-4 h-screen animate__animated animate__fadeIn flex flex-col gap-2 justify-around items-center text-cokelatTua bg-gray-200"
             style={{
               backgroundImage: "url('/bg-content.png')",
               backgroundSize: "cover",
@@ -255,7 +255,7 @@ export default function Home() {
             </button>
           </div>
           <div
-            className="p-4 h-screen animate__animated animate__fadeIn flex flex-col gap-24 justify-center items-center text-cokelatTua"
+            className="p-4 h-screen animate__animated animate__fadeIn flex flex-col gap-24 justify-center items-center text-cokelatTua bg-gray-200"
             style={{
               backgroundImage: "url('/bg-content.png')",
               backgroundSize: "cover",
@@ -317,7 +317,7 @@ export default function Home() {
             </div>
           </div>
           <div
-            className="h-screen animate__animated animate__fadeIn flex flex-col items-center text-cokelatTua"
+            className="h-screen animate__animated animate__fadeIn flex flex-col items-center text-cokelatTua bg-gray-200"
             style={{
               backgroundImage: "url('/bg-content.png')",
               backgroundSize: "cover",
