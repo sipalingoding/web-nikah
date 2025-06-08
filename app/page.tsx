@@ -95,7 +95,7 @@ export default function Home() {
   return (
     <>
       <div
-        className="max-w-sm mx-auto py-4 min-h-[100dvh]"
+        className="max-w-md mx-auto py-4 min-h-[100dvh]"
         style={{
           backgroundImage: "url('/home/bg.jpg')",
           backgroundSize: "cover",
@@ -133,7 +133,7 @@ export default function Home() {
         />
       </div>
       {isStarted && (
-        <div ref={contentRef} className="flex flex-col max-w-sm mx-auto">
+        <div ref={contentRef} className="flex flex-col max-w-md mx-auto">
           <div
             className="p-4 h-screen animate__animated animate__fadeIn flex flex-col justify-around items-center"
             style={{
@@ -142,7 +142,7 @@ export default function Home() {
               backgroundPosition: "center",
             }}
           >
-            <div className="w-full max-w-sm">
+            <div className="w-full max-w-md">
               <div className="relative w-[350px] pt-[177.78%]">
                 {" "}
                 {/* 9:16 aspect ratio = 16 / 9 * 100 = 177.78% */}
