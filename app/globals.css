@@ -8,3 +8,11 @@
   font-weight: normal;
   font-style: normal;
 }
+
+button {
+  touch-action: manipulation; /* Prevents double-tap zoom on mobile */
+  -webkit-tap-highlight-color: transparent; /* Removes tap highlight on mobile */
+  cursor: pointer; /* Ensures the button looks clickable */
+  position: relative; /* Ensure proper z-index stacking */
+  z-index: 10; /* Ensure the button is above other elements */
+}
