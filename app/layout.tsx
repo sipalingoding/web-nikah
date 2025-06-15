@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Marcellus } from "next/font/google";
 import { Poppins } from "next/font/google";
-import "animate.css";
+import "aos/dist/aos.css";
 
 const poppins = Poppins({
   subsets: ["latin"],

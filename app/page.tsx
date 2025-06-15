@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { HashLoader } from "react-spinners";
+import AOS from "aos";
 
 export default function Home() {
   const dataImage = [
@@ -53,6 +55,7 @@ export default function Home() {
   );
   const numberToCopy = "1170011464013";
   const [copied, setCopied] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(numberToCopy).then(() => {
@@ -60,6 +63,21 @@ export default function Home() {
       setTimeout(() => setCopied(false), 2000); // reset teks setelah 2 detik
     });
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // durasi animasi dalam ms
+      once: true, // hanya animasi sekali
+    });
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -81,7 +99,7 @@ export default function Home() {
           setIsStarted(true);
           setTimeout(() => {
             contentRef.current?.scrollIntoView({ behavior: "smooth" });
-          }, 300);
+          }, 5);
         })
         .catch((err) => {
           console.error("Audio play failed:", err);
@@ -94,66 +112,85 @@ export default function Home() {
 
   return (
     <>
-      <div
-        className="max-w-md mx-auto py-4 min-h-[100dvh]"
-        style={{
-          backgroundImage: "url('/home/bg.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <audio ref={audioRef} loop src="/audio/backsound.mp3" />
-        <div className="flex flex-col gap-2 justify-center items-center">
-          <span className="font-marcellus text-cokelat text-center animate__animated animate__fadeInDown">
-            <p className="text-xs">Kepada Yth: Bapak/Ibu/Saudara/i</p>
-            <p className="font-sm font-marcellus">Tamu Undangan</p>
-          </span>
-          <button
-            className="bg-cokelat text-white px-4 py-2 rounded-full flex justify-center gap-2"
-            onClick={handleStart}
-          >
-            <Image
-              src="/open-folder.svg"
-              alt="Open Folder Icon"
-              width={16}
-              height={16}
-            />
-            <span className="text-xs font-poppins font-semibold text-putih">
-              Buka Undangan
-            </span>
-          </button>
+      {isLoading && (
+        <div className="flex justify-center items-center h-screen">
+          <HashLoader color="#694A46" loading={true} size={30} />
         </div>
-        <Image
-          src={dataImage[currentIndex].src}
-          alt={`bg-${dataImage[currentIndex].id}`}
-          className="absolute bottom-1 left-1/2 -translate-x-1/2"
-          width={400}
-          height={400}
-        />
-      </div>
+      )}
+      {!isLoading && (
+        <div
+          className="max-w-md mx-auto py-4 min-h-[100dvh]"
+          style={{
+            backgroundImage: "url('/home/bg.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <audio ref={audioRef} loop src="/audio/backsound.mp3" />
+          <div
+            className="flex flex-col gap-2 justify-center items-center"
+            data-aos="fade-down"
+            data-aos-easing="linear"
+            data-aos-duration="1000"
+          >
+            <span className="font-marcellus text-cokelat text-center">
+              <p className="text-xs">Kepada Yth: Bapak/Ibu/Saudara/i</p>
+              <p className="font-sm font-marcellus">Tamu Undangan</p>
+            </span>
+            <button
+              className="bg-cokelat text-white px-4 py-2 rounded-full flex justify-center gap-2"
+              onClick={handleStart}
+            >
+              <Image
+                src="/open-folder.svg"
+                alt="Open Folder Icon"
+                width={16}
+                height={16}
+              />
+              <span className="text-xs font-poppins font-semibold text-putih">
+                Buka Undangan
+              </span>
+            </button>
+          </div>
+          <Image
+            src={dataImage[currentIndex].src}
+            alt={`bg-${dataImage[currentIndex].id}`}
+            className="absolute bottom-1 left-1/2 -translate-x-1/2"
+            width={400}
+            height={400}
+          />
+        </div>
+      )}
+
       {isStarted && (
         <div ref={contentRef} className="flex flex-col max-w-md mx-auto">
-   <div
-  className="p-8 h-screen animate__animated animate__fadeIn flex flex-col justify-around items-center"
-  style={{
-    backgroundImage: "url('/bg-content.png')",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-  }}
->
-  <div className="w-full max-w-md">
-    <div className="relative w-full" style={{ aspectRatio: "9 / 16" }}>
-      <iframe
-        className="absolute top-0 left-0 w-full h-full rounded-lg"
-        src={iframeSrc}
-        title="YouTube Shorts Video"
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      ></iframe>
-    </div>
-  </div>
-</div>
+          <div
+            className="p-8 h-screen flex flex-col justify-around items-center"
+            style={{
+              backgroundImage: "url('/bg-content.png')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div className="w-full max-w-md">
+              <div
+                className="relative w-full"
+                style={{ aspectRatio: "9 / 16" }}
+                data-aos="fade-down"
+                data-aos-easing="linear"
+                data-aos-duration="1500"
+              >
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full rounded-lg"
+                  src={iframeSrc}
+                  title="YouTube Shorts Video"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
+          </div>
           <div
             className="p-4 h-screen animate__animated animate__fadeIn flex flex-col gap-2 justify-around items-center text-cokelatTua"
             style={{
@@ -162,12 +199,17 @@ export default function Home() {
               backgroundPosition: "center",
             }}
           >
-            <div className="flex flex-col gap-4 animate__animated animate__fadeInLeft animate__slower">
+            <div
+              className="flex flex-col justify-center items-center gap-4"
+              data-aos="fade-right"
+              data-aos-offset="300"
+              data-aos-easing="ease-in-sine"
+            >
               <Image
                 src={dataBride[currentIndexBride].src}
                 alt={`bg-${dataBride[currentIndexBride].id}`}
-                width={200}
-                height={200}
+                width={150}
+                height={150}
               />
               <span className="font-signature text-3xl">
                 Karima Urfa Wardiani
@@ -179,8 +221,15 @@ export default function Home() {
                 Bapak Abah & Ibu Etin
               </span>
             </div>
-            <div className="font-signature text-3xl">&</div>
-            <div className="flex flex-col gap-4 animate__fadeInDown">
+            <div className="font-signature text-7xl" data-aos="zoom-in">
+              &
+            </div>
+            <div
+              className="flex flex-col justify-center items-center gap-4"
+              data-aos="fade-left"
+              data-aos-offset="300"
+              data-aos-easing="ease-in-sine"
+            >
               <span className="font-signature text-3xl">
                 Salman Faris Siddiq
               </span>
@@ -193,8 +242,8 @@ export default function Home() {
               <Image
                 src={dataGroom[currentIndexGroom].src}
                 alt={`bg-${dataGroom[currentIndexGroom].id}`}
-                width={200}
-                height={200}
+                width={150}
+                height={150}
               />
             </div>
           </div>
@@ -206,11 +255,19 @@ export default function Home() {
               backgroundPosition: "center",
             }}
           >
-            <div className="flex flex-col items-center font-signature text-4xl gap-2">
+            <div
+              className="flex flex-col items-center font-signature text-4xl gap-2"
+              data-aos="fade-down"
+              data-aos-easing="linear"
+              data-aos-duration="1500"
+            >
               <span>Akad & Resepsi</span>
               <span>Pernikahan</span>
             </div>
-            <div className="flex gap-8 font-marcellus items-center">
+            <div
+              className="flex gap-8 font-marcellus items-center"
+              data-aos="zoom-in-up"
+            >
               <span>Sabtu</span>
               <div className="w-1 h-16 rounded-full bg-[#EAE0D4]"></div>
               <div className="flex flex-col gap-2 items-center">
@@ -220,22 +277,40 @@ export default function Home() {
               <div className="w-1 h-16 rounded-full bg-[#EAE0D4]"></div>
               <span>September</span>
             </div>
-            <span className="font-marcellus">09.00 s/d 13.30 WIB</span>
-            <span className="font-signature text-3xl">Lokasi Acara</span>
+            <span className="font-marcellus" data-aos="zoom-in-up">
+              09.00 s/d 13.30 WIB
+            </span>
+            <span
+              className="font-signature text-3xl"
+              data-aos="fade-down"
+              data-aos-easing="linear"
+              data-aos-duration="1500"
+            >
+              Lokasi Acara
+            </span>
             <Image
               src={"/gedung-keraton.png"}
               width={200}
               height={200}
               alt="gedung-keraton"
+              data-aos="zoom-in"
             ></Image>
-            <div className="font-marcellus flex flex-col gap-2 items-center">
+            <div
+              className="font-marcellus flex flex-col gap-2 items-center"
+              data-aos="fade-up"
+              data-aos-duration="3000"
+            >
               <span className="text-lg">Gedung Keraton Selagangga</span>
               <span className="text-xs text-center w-52">
                 Jl. K.H. Ahmad Dahlan No..40, Ciamis, Kec. Ciamis, Kabupaten
                 Ciamis, Jawa Barat 46211
               </span>
             </div>
-            <button className="w-40 bg-cokelatTua rounded-full h-10 flex justify-center items-center gap-2">
+            <button
+              className="w-40 bg-cokelatTua rounded-full h-10 flex justify-center items-center gap-2"
+              data-aos="fade-up"
+              data-aos-duration="3000"
+            >
               <Image
                 src={"/icon-location.svg"}
                 width={16}
@@ -262,14 +337,27 @@ export default function Home() {
             }}
           >
             <div className="text-cokelatTua flex flex-col gap-4 justify-center items-center">
-              <span className="font-signature text-4xl">Wedding Gift</span>
-              <span className="font-marcellus text-sm text-center">
+              <span
+                className="font-signature text-4xl"
+                data-aos="fade-down"
+                data-aos-easing="linear"
+                data-aos-duration="1500"
+              >
+                Wedding Gift
+              </span>
+              <span
+                className="font-marcellus text-sm text-center"
+                data-aos="fade-up"
+                data-aos-duration="3000"
+              >
                 Doa Restu Anda merupakan karunia yang sangat berarti bagi kami.
                 Namun jika Anda ingin memberi hadiah kami sediakan fitur berikut
               </span>
               <button
                 className="w-40 bg-cokelatTua rounded-full h-10 flex justify-center items-center gap-2"
                 onClick={() => setIsSendClick(true)}
+                data-aos="fade-up"
+                data-aos-duration="3000"
               >
                 <Image
                   src={"/send.svg"}
@@ -303,14 +391,27 @@ export default function Home() {
               )}
             </div>
             <div className="flex flex-col justify-center gap-8 items-center">
-              <span className="font-signature text-4xl">QR Code</span>
+              <span
+                className="font-signature text-4xl"
+                data-aos="fade-down"
+                data-aos-easing="linear"
+                data-aos-duration="1500"
+              >
+                QR Code
+              </span>
               <Image
                 src={"/QR-Code.png"}
                 width={200}
                 height={200}
                 alt="qr-code"
+                data-aos="fade-up"
+                data-aos-duration="3000"
               />
-              <span className="text-xs text-cokelatTua font-marcellus text-center w-40">
+              <span
+                className="text-xs text-cokelatTua font-marcellus text-center w-40"
+                data-aos="fade-up"
+                data-aos-duration="3000"
+              >
                 Gunakan QR Code ini untuk memasuki vanue pernikahan
               </span>
             </div>
@@ -324,15 +425,30 @@ export default function Home() {
             }}
           >
             <div className="flex-1 flex flex-col justify-center items-center gap-8 px-4">
-              <span className="text-sm text-center font-marcellus">
+              <span
+                className="text-sm text-center font-marcellus"
+                data-aos="fade-down"
+                data-aos-easing="linear"
+                data-aos-duration="1500"
+              >
                 Merupakan suatu kebahagiaan bagi kami, apabila
                 Bapak/Ibu/Saudara/i, hadir & memberikan doa restu kepada kedua
                 mempelai.
               </span>
-              <span className="text-base font-marcellus">
+              <span
+                className="text-base font-marcellus"
+                data-aos="fade-up"
+                data-aos-duration="3000"
+              >
                 Hormat Kami Yang Mengundang
               </span>
-              <span className="font-signature text-4xl">Karima & Salman</span>
+              <span
+                className="font-signature text-4xl"
+                data-aos="fade-up"
+                data-aos-duration="3000"
+              >
+                Karima & Salman
+              </span>
             </div>
 
             <Image
