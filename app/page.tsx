@@ -93,41 +93,21 @@ export default function Home() {
     const audio = audioRef.current;
     if (audio) {
       audio.load();
-      audio
-        .play()
-        .then(() => {
-          setIsStarted(true);
-          setTimeout(() => {
-            // First try scrollIntoView
-            if (contentRef.current) {
-              contentRef.current.scrollIntoView({ behavior: "smooth" });
-            }
 
-            // Mobile fallback after 100ms
-            setTimeout(() => {
-              if (contentRef.current) {
-                const contentPosition =
-                  contentRef.current.getBoundingClientRect().top;
-                const offsetPosition =
-                  window.pageYOffset + contentPosition - 50;
-                window.scrollTo({
-                  top: offsetPosition,
-                  behavior: "smooth",
-                });
-              } else {
-                // Final fallback if all else fails
-                window.scrollTo({
-                  top: document.body.scrollHeight,
-                  behavior: "smooth",
-                });
-              }
-            }, 100);
-          }, 100);
-        })
-        .catch((err) => {
-          console.error("Audio play failed:", err);
-        });
+      // Tetap coba play audio, tapi scroll tetap dilakukan
+      audio.play().catch((err) => {
+        console.warn("Audio autoplay blocked by browser:", err);
+      });
     }
+
+    setIsStarted(true);
+
+    // Scroll tetap dilakukan terlepas dari audio play sukses/gagal
+    setTimeout(() => {
+      contentRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 300); // beri sedikit delay agar elemen benar-benar render
+
+    // Ganti src iframe agar autoplay dimulai
     setIframeSrc(
       "https://www.youtube.com/embed/hedntdJQQAs?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0"
     );
@@ -150,7 +130,12 @@ export default function Home() {
           }}
         >
           <audio ref={audioRef} loop src="/audio/backsound.mp3" />
-          <div className="flex flex-col gap-2 justify-center items-center animate__animated animate__fadeInDown">
+          <div
+            className="flex flex-col gap-2 justify-center items-center"
+            data-aos="fade-down"
+            data-aos-easing="linear"
+            data-aos-duration="1000"
+          >
             <span className="font-marcellus text-cokelat text-center">
               <p className="text-xs">Kepada Yth: Bapak/Ibu/Saudara/i</p>
               <p className="font-sm font-marcellus">Tamu Undangan</p>
@@ -180,7 +165,7 @@ export default function Home() {
         </div>
       )}
 
-      {isStarted && !isLoading && (
+      {isStarted && (
         <div ref={contentRef} className="flex flex-col max-w-md mx-auto">
           <div
             className="p-8 h-screen flex flex-col justify-around items-center"
