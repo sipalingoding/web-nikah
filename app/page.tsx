@@ -162,7 +162,7 @@ export default function Home() {
         </div>
       )}
 
-      {isStarted && (
+      {isStarted && !isLoading && (
         <div ref={contentRef} className="flex flex-col max-w-md mx-auto">
           <div
             className="p-8 h-screen flex flex-col justify-around items-center"
