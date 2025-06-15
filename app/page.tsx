@@ -93,21 +93,18 @@ export default function Home() {
     const audio = audioRef.current;
     if (audio) {
       audio.load();
-
-      // Tetap coba play audio, tapi scroll tetap dilakukan
-      audio.play().catch((err) => {
-        console.warn("Audio autoplay blocked by browser:", err);
-      });
+      audio
+        .play()
+        .then(() => {
+          setIsStarted(true);
+          setTimeout(() => {
+            contentRef.current?.scrollIntoView({ behavior: "smooth" });
+          }, 300);
+        })
+        .catch((err) => {
+          console.error("Audio play failed:", err);
+        });
     }
-
-    setIsStarted(true);
-
-    // Scroll tetap dilakukan terlepas dari audio play sukses/gagal
-    setTimeout(() => {
-      contentRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, 300); // beri sedikit delay agar elemen benar-benar render
-
-    // Ganti src iframe agar autoplay dimulai
     setIframeSrc(
       "https://www.youtube.com/embed/hedntdJQQAs?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0"
     );
@@ -130,13 +127,8 @@ export default function Home() {
           }}
         >
           <audio ref={audioRef} loop src="/audio/backsound.mp3" />
-          <div
-            className="flex flex-col gap-2 justify-center items-center"
-            data-aos="fade-down"
-            data-aos-easing="linear"
-            data-aos-duration="1000"
-          >
-            <span className="font-marcellus text-cokelat text-center">
+          <div className="flex flex-col gap-2 justify-center items-center">
+            <span className="font-marcellus text-cokelat text-center animate__animated animate__fadeInDown">
               <p className="text-xs">Kepada Yth: Bapak/Ibu/Saudara/i</p>
               <p className="font-sm font-marcellus">Tamu Undangan</p>
             </span>
