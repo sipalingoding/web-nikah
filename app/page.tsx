@@ -122,7 +122,7 @@ export default function Home() {
                 });
               }
             }, 100);
-          }, 5);
+          }, 100);
         })
         .catch((err) => {
           console.error("Audio play failed:", err);
@@ -150,12 +150,7 @@ export default function Home() {
           }}
         >
           <audio ref={audioRef} loop src="/audio/backsound.mp3" />
-          <div
-            className="flex flex-col gap-2 justify-center items-center"
-            data-aos="fade-down"
-            data-aos-easing="linear"
-            data-aos-duration="1000"
-          >
+          <div className="flex flex-col gap-2 justify-center items-center animate__animated animate__fadeInDown">
             <span className="font-marcellus text-cokelat text-center">
               <p className="text-xs">Kepada Yth: Bapak/Ibu/Saudara/i</p>
               <p className="font-sm font-marcellus">Tamu Undangan</p>
@@ -163,7 +158,6 @@ export default function Home() {
             <button
               className="bg-cokelat text-white px-4 py-2 rounded-full flex justify-center gap-2"
               onClick={handleStart}
-              onTouchEnd={handleStart}
             >
               <Image
                 src="/open-folder.svg"
