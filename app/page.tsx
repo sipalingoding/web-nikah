@@ -133,29 +133,27 @@ export default function Home() {
       </div>
       {isStarted && (
         <div ref={contentRef} className="flex flex-col max-w-md mx-auto">
-          <div
-            className="p-8 h-screen animate__animated animate__fadeIn flex flex-col justify-around items-center"
-            style={{
-              backgroundImage: "url('/bg-content.png')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          >
-            <div className="w-full max-w-md">
-              <div className="relative w-[380px] pt-[175.78%]">
-                {" "}
-                {/* 9:16 aspect ratio = 16 / 9 * 100 = 177.78% */}
-                <iframe
-                  className="absolute top-0 left-0 w-full h-full rounded-lg"
-                  src={iframeSrc}
-                  title="YouTube Shorts Video"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              </div>
-            </div>
-          </div>
+   <div
+  className="p-8 h-screen animate__animated animate__fadeIn flex flex-col justify-around items-center"
+  style={{
+    backgroundImage: "url('/bg-content.png')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  }}
+>
+  <div className="w-full max-w-md">
+    <div className="relative w-full" style={{ aspectRatio: "9 / 16" }}>
+      <iframe
+        className="absolute top-0 left-0 w-full h-full rounded-lg"
+        src={iframeSrc}
+        title="YouTube Shorts Video"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      ></iframe>
+    </div>
+  </div>
+</div>
           <div
             className="p-4 h-screen animate__animated animate__fadeIn flex flex-col gap-2 justify-around items-center text-cokelatTua"
             style={{

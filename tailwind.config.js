@@ -13,7 +13,7 @@ module.exports = {
         cokelatTua: "#4A3E35",
       },
       fontFamily: {
-        signature: ["Photograph Signature", "cursive"],
+        signature: ['"Photograph Signature"', "cursive"],
         marcellus: ["var(--font-marcellus)"],
         poppins: ["var(--font-poppins)"],
       },
