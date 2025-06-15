@@ -98,7 +98,30 @@ export default function Home() {
         .then(() => {
           setIsStarted(true);
           setTimeout(() => {
-            contentRef.current?.scrollIntoView({ behavior: "smooth" });
+            // First try scrollIntoView
+            if (contentRef.current) {
+              contentRef.current.scrollIntoView({ behavior: "smooth" });
+            }
+
+            // Mobile fallback after 100ms
+            setTimeout(() => {
+              if (contentRef.current) {
+                const contentPosition =
+                  contentRef.current.getBoundingClientRect().top;
+                const offsetPosition =
+                  window.pageYOffset + contentPosition - 50;
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: "smooth",
+                });
+              } else {
+                // Final fallback if all else fails
+                window.scrollTo({
+                  top: document.body.scrollHeight,
+                  behavior: "smooth",
+                });
+              }
+            }, 100);
           }, 5);
         })
         .catch((err) => {
@@ -140,6 +163,7 @@ export default function Home() {
             <button
               className="bg-cokelat text-white px-4 py-2 rounded-full flex justify-center gap-2"
               onClick={handleStart}
+              onTouchEnd={handleStart}
             >
               <Image
                 src="/open-folder.svg"
