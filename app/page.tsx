@@ -149,7 +149,7 @@ export default function Home({ guest }: { guest: Guest }) {
         setCurrentIndex((prev) => (prev + 1) % dataImage.length);
         setCurrenIndexBride((prev) => (prev + 1) % dataBride.length);
         setCurrenIndexGroom((prev) => (prev + 1) % dataGroom.length);
-      }, 1000);
+      }, 1500);
     }, 2000); // Wait 2 seconds before starting rotation
 
     return () => {
@@ -218,21 +218,13 @@ export default function Home({ guest }: { guest: Guest }) {
               </span>
             </button>
           </div>
-          <div className="absolute bottom-1 left-1/2 -translate-x-1/2 relative">
-            {dataImage.map((image, index) => (
-              <Image
-                key={`home-image-${image.id}`}
-                src={image.src}
-                alt={`bg-${image.id}`}
-                className={`absolute top-0 left-1/2 -translate-x-1/2 transition-opacity duration-500 ease-in-out ${
-                  index === currentIndex ? "opacity-100" : "opacity-0"
-                }`}
-                width={400}
-                height={400}
-                priority
-                unoptimized
-              />
-            ))}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2">
+            <Image
+              src={dataImage[currentIndex].src}
+              alt={`bg-${dataImage[currentIndex].id}`}
+              width={400}
+              height={400}
+            />
           </div>
         </div>
       )}
