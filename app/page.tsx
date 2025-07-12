@@ -218,12 +218,14 @@ export default function Home({ guest }: { guest: Guest }) {
               </span>
             </button>
           </div>
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2">
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] max-w-xs">
             <Image
               src={dataImage[currentIndex].src}
               alt={`bg-${dataImage[currentIndex].id}`}
-              width={400}
-              height={400}
+              width={0}
+              height={0}
+              sizes="100vw"
+              className="w-full h-auto"
             />
           </div>
         </div>
