@@ -81,12 +81,55 @@ export default function Home({ guest }: { guest: Guest }) {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
+    // Collect all image sources that need to be preloaded
+    const imageSources = [
+      ...dataImage.map((img) => img.src),
+      ...dataGroom.map((img) => img.src),
+      ...dataBride.map((img) => img.src),
+      "/bg-content.png",
+      "/home/bg.jpg",
+      "/gedung-keraton.png",
+      "/logo-mandiri.png",
+      "/pohon-bawah.png",
+      "/open-folder.svg",
+      "/icon-location.svg",
+      "/send.svg",
+    ];
 
-    return () => clearTimeout(timer);
-  }, []);
+    let loadedCount = 0;
+    const totalImages = imageSources.length;
+
+    const preloadImage = (src: string) => {
+      return new Promise<void>((resolve) => {
+        const img = document.createElement("img");
+        img.onload = () => {
+          loadedCount++;
+          if (loadedCount === totalImages) {
+            setIsLoading(false);
+          }
+          resolve();
+        };
+        img.onerror = () => {
+          loadedCount++;
+          if (loadedCount === totalImages) {
+            setIsLoading(false);
+          }
+          resolve();
+        };
+        img.src = src;
+      });
+    };
+
+    // Preload all images
+    imageSources.forEach((src) => preloadImage(src));
+
+    // Fallback: if images take too long, stop loading after 10 seconds
+    const fallbackTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, 10000);
+
+    return () => clearTimeout(fallbackTimer);
+  }, [dataImage, dataGroom, dataBride]);
 
   useEffect(() => {
     AOS.init({
@@ -212,7 +255,10 @@ export default function Home({ guest }: { guest: Guest }) {
               backgroundPosition: "center",
             }}
           >
-            <div className="fkex flex-col justify-center items-center text-center font-marcellus text-sm">
+            <div
+              className="fkex flex-col justify-center items-center text-center font-marcellus text-sm"
+              data-aos="zoom-in"
+            >
               <span>
                 &quot;Apabila seorang hamba menikah, maka sungguh dia telah
                 menyempurnakan setengah dari agamanya. Maka hendaklah dia
@@ -312,7 +358,7 @@ export default function Home({ guest }: { guest: Guest }) {
             </span>
           </div>
           <div
-            className="p-4 h-screen animate__animated animate__fadeIn flex flex-col gap-2 justify-around items-center text-cokelatTua"
+            className="p-4 h-screen animate__animated animate__fadeIn flex flex-col gap-8 justify-center items-center text-cokelatTua"
             style={{
               backgroundImage: "url('/bg-content.png')",
               backgroundSize: "cover",
@@ -344,28 +390,28 @@ export default function Home({ guest }: { guest: Guest }) {
                 Jl. K.H. Ahmad Dahlan No..40, Ciamis, Kec. Ciamis, Kabupaten
                 Ciamis, Jawa Barat 46211
               </span>
-            </div>
-            <button
-              className="w-40 bg-cokelatTua rounded-full h-10 flex justify-center items-center gap-2"
-              data-aos="fade-up"
-              data-aos-duration="3000"
-            >
-              <Image
-                src={"/icon-location.svg"}
-                width={16}
-                height={16}
-                alt="icon-location"
-              />
-              <a
-                href="https://maps.app.goo.gl/ZcnQTponHGBN78c39"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                className="w-40 bg-cokelatTua rounded-full h-10 flex justify-center items-center gap-2"
+                data-aos="fade-up"
+                data-aos-duration="3000"
               >
-                <span className="font-marcellus text-white text-sm">
-                  Google Maps
-                </span>
-              </a>
-            </button>
+                <Image
+                  src={"/icon-location.svg"}
+                  width={16}
+                  height={16}
+                  alt="icon-location"
+                />
+                <a
+                  href="https://maps.app.goo.gl/ZcnQTponHGBN78c39"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="font-marcellus text-white text-sm">
+                    Google Maps
+                  </span>
+                </a>
+              </button>
+            </div>
           </div>
           <div
             className="p-4 h-screen animate__animated animate__fadeIn flex flex-col gap-24 justify-center items-center text-cokelatTua"

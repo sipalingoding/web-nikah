@@ -13,7 +13,7 @@ export default async function SlugPage({ params }: PageProps) {
   const supabase = await createClient();
 
   const { data: guest, error } = await supabase
-    .from("Tamu")
+    .from("tamu")
     .select("nama, slug")
     .eq("slug", slug)
     .single();
