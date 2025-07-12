@@ -5,7 +5,22 @@ import { useEffect, useRef, useState } from "react";
 import { HashLoader } from "react-spinners";
 import AOS from "aos";
 
-export default function Home() {
+interface Guest {
+  slug: string;
+  nama: string;
+}
+
+// function generateFormLink(name: string, category: string) {
+//   const base =
+//     "https://docs.google.com/forms/d/e/1FAIpQLSda63xXdGGHEy__rTQLOVHN5h-Ij2SMTiAUhuStsaLuTTCaTw/viewform";
+//   const params = new URLSearchParams({
+//     "entry.1452344996": name,
+//     "entry.1608953154": category,
+//   });
+//   return `${base}?${params.toString()}`;
+// }
+
+export default function Home({ guest }: { guest: Guest }) {
   const dataImage = [
     {
       id: 1,
@@ -51,8 +66,9 @@ export default function Home() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const [iframeSrc, setIframeSrc] = useState(
-    "https://www.youtube.com/embed/hedntdJQQAs?mute=1&controls=0&modestbranding=1&rel=0"
+    "https://www.youtube.com/embed/QX-FSSMAh8w?mute=1&controls=0&modestbranding=1&rel=0"
   );
+
   const numberToCopy = "1170011464013";
   const [copied, setCopied] = useState(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -106,7 +122,7 @@ export default function Home() {
         });
     }
     setIframeSrc(
-      "https://www.youtube.com/embed/hedntdJQQAs?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0"
+      "https://www.youtube.com/embed/QX-FSSMAh8w?mute=1&controls=0&modestbranding=1&rel=0"
     );
   };
 
@@ -130,7 +146,9 @@ export default function Home() {
           <div className="flex flex-col gap-2 justify-center items-center">
             <span className="font-marcellus text-cokelat text-center animate__animated animate__fadeInDown">
               <p className="text-xs">Kepada Yth: Bapak/Ibu/Saudara/i</p>
-              <p className="font-sm font-marcellus">Tamu Undangan</p>
+              <p className="font-sm font-marcellus">
+                {guest?.nama ?? "Tamu Undangan"}
+              </p>
             </span>
             <button
               className="bg-cokelat text-white px-4 py-2 rounded-full flex justify-center gap-2"
@@ -194,6 +212,23 @@ export default function Home() {
               backgroundPosition: "center",
             }}
           >
+            <div className="fkex flex-col justify-center items-center text-center font-marcellus text-sm">
+              <span>
+                &quot;Apabila seorang hamba menikah, maka sungguh dia telah
+                menyempurnakan setengah dari agamanya. Maka hendaklah dia
+                bertakwa kepada Allah pada setengah yang tersisa.&quot;
+              </span>
+              <span>(HR. Tirmidzi:1081)</span>
+            </div>
+          </div>
+          <div
+            className="p-8 h-screen flex flex-col justify-around items-center"
+            style={{
+              backgroundImage: "url('/bg-content.png')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
             <div
               className="flex flex-col justify-center items-center gap-4"
               data-aos="fade-right"
@@ -213,7 +248,7 @@ export default function Home() {
                 Putri kedua dari
               </span>
               <span className="font-marcellus text-center text-sm">
-                Bapak Abah & Ibu Etin
+                Bapak Didi & Ibu Etin
               </span>
             </div>
             <div className="font-signature text-7xl" data-aos="zoom-in">
@@ -243,7 +278,7 @@ export default function Home() {
             </div>
           </div>
           <div
-            className="p-4 h-screen animate__animated animate__fadeIn flex flex-col gap-2 justify-around items-center text-cokelatTua"
+            className="p-4 h-screen animate__animated animate__fadeIn flex flex-col gap-8 justify-center items-center text-cokelatTua"
             style={{
               backgroundImage: "url('/bg-content.png')",
               backgroundSize: "cover",
@@ -275,6 +310,15 @@ export default function Home() {
             <span className="font-marcellus" data-aos="zoom-in-up">
               09.00 s/d 13.30 WIB
             </span>
+          </div>
+          <div
+            className="p-4 h-screen animate__animated animate__fadeIn flex flex-col gap-2 justify-around items-center text-cokelatTua"
+            style={{
+              backgroundImage: "url('/bg-content.png')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
             <span
               className="font-signature text-3xl"
               data-aos="fade-down"
@@ -384,31 +428,6 @@ export default function Home() {
                   </div>
                 </div>
               )}
-            </div>
-            <div className="flex flex-col justify-center gap-8 items-center">
-              <span
-                className="font-signature text-4xl"
-                data-aos="fade-down"
-                data-aos-easing="linear"
-                data-aos-duration="1500"
-              >
-                QR Code
-              </span>
-              <Image
-                src={"/QR-Code.png"}
-                width={200}
-                height={200}
-                alt="qr-code"
-                data-aos="fade-up"
-                data-aos-duration="3000"
-              />
-              <span
-                className="text-xs text-cokelatTua font-marcellus text-center w-40"
-                data-aos="fade-up"
-                data-aos-duration="3000"
-              >
-                Gunakan QR Code ini untuk memasuki vanue pernikahan
-              </span>
             </div>
           </div>
           <div
