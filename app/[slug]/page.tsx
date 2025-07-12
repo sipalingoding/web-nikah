@@ -10,19 +10,15 @@ interface PageProps {
 
 export default async function SlugPage({ params }: PageProps) {
   const { slug } = await params;
-  console.log("Slug from params:", slug);
-
   const supabase = await createClient();
-  console.log("Supabase client created");
 
   const { data: guest, error } = await supabase
-    .from("tamu")
+    .from("Tamu")
     .select("nama, slug")
     .eq("slug", slug)
     .single();
 
-  console.log("Guest data:", guest);
-  console.log("Error:", error);
+  console.log(guest);
 
   if (!guest || error) {
     return notFound();
