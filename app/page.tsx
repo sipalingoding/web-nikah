@@ -141,13 +141,21 @@ export default function Home({ guest }: { guest: Guest }) {
   useEffect(() => {
     if (isLoading) return; // Only start rotation after images are preloaded
 
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % dataImage.length);
-      setCurrenIndexBride((prev) => (prev + 1) % dataBride.length);
-      setCurrenIndexGroom((prev) => (prev + 1) % dataGroom.length);
-    }, 1000);
+    let interval: NodeJS.Timeout;
 
-    return () => clearInterval(interval);
+    // Add a delay before starting the rotation to prevent initial flicker
+    const startDelay = setTimeout(() => {
+      interval = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % dataImage.length);
+        setCurrenIndexBride((prev) => (prev + 1) % dataBride.length);
+        setCurrenIndexGroom((prev) => (prev + 1) % dataGroom.length);
+      }, 1000);
+    }, 2000); // Wait 2 seconds before starting rotation
+
+    return () => {
+      clearTimeout(startDelay);
+      if (interval) clearInterval(interval);
+    };
   }, [isLoading, dataImage.length, dataBride.length, dataGroom.length]);
 
   const handleStart = () => {
@@ -167,7 +175,7 @@ export default function Home({ guest }: { guest: Guest }) {
         });
     }
     setIframeSrc(
-      "https://www.youtube.com/embed/QX-FSSMAh8w?mute=1&controls=0&modestbranding=1&rel=0"
+      "https://www.youtube.com/embed/QX-FSSMAh8w?autoplay=1&mute=0&controls=0&modestbranding=1&rel=0"
     );
   };
 
@@ -210,13 +218,22 @@ export default function Home({ guest }: { guest: Guest }) {
               </span>
             </button>
           </div>
-          <Image
-            src={dataImage[currentIndex].src}
-            alt={`bg-${dataImage[currentIndex].id}`}
-            className="absolute bottom-1 left-1/2 -translate-x-1/2"
-            width={400}
-            height={400}
-          />
+          <div className="absolute bottom-1 left-1/2 -translate-x-1/2 relative">
+            {dataImage.map((image, index) => (
+              <Image
+                key={`home-image-${image.id}`}
+                src={image.src}
+                alt={`bg-${image.id}`}
+                className={`absolute top-0 left-1/2 -translate-x-1/2 transition-opacity duration-500 ease-in-out ${
+                  index === currentIndex ? "opacity-100" : "opacity-0"
+                }`}
+                width={400}
+                height={400}
+                priority
+                unoptimized
+              />
+            ))}
+          </div>
         </div>
       )}
 
