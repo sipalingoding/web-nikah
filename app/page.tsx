@@ -66,7 +66,7 @@ export default function Home({ guest }: { guest: Guest }) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const [iframeSrc, setIframeSrc] = useState(
-    "https://www.youtube.com/embed/QX-FSSMAh8w?mute=1&controls=0&modestbranding=1&rel=0"
+    "https://www.youtube.com/embed/QX-FSSMAh8w?autoplay=0&mute=1&controls=0&modestbranding=1&rel=0"
   );
 
   const numberToCopy = "1170011464013";
