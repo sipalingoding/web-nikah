@@ -139,6 +139,8 @@ export default function Home({ guest }: { guest: Guest }) {
   }, []);
 
   useEffect(() => {
+    if (isLoading) return; // Only start rotation after images are preloaded
+
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % dataImage.length);
       setCurrenIndexBride((prev) => (prev + 1) % dataBride.length);
@@ -146,7 +148,7 @@ export default function Home({ guest }: { guest: Guest }) {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [dataImage.length, dataBride.length, dataGroom.length]);
+  }, [isLoading, dataImage.length, dataBride.length, dataGroom.length]);
 
   const handleStart = () => {
     const audio = audioRef.current;
