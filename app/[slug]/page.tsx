@@ -14,7 +14,7 @@ export const metadata = {
   openGraph: {
     title: "Undangan Pernikahan Salman & Karima",
     description: "Merupakan suatu kehormatan bagi kami mengundang Anda.",
-    url: "https://www.salman-karima.com/Wa-Nani",
+    url: "https://salman-karima.com/Wa-Nani",
     type: "website",
     images: [
       {
