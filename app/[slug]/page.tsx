@@ -8,6 +8,25 @@ interface PageProps {
   }>;
 }
 
+export const metadata = {
+  title: "Undangan Pernikahan Salman & Karima",
+  description: "Merupakan suatu kehormatan bagi kami mengundang Anda.",
+  openGraph: {
+    title: "Undangan Pernikahan Salman & Karima",
+    description: "Merupakan suatu kehormatan bagi kami mengundang Anda.",
+    url: "https://www.salman-karima.com/Wa-Nani",
+    type: "website",
+    images: [
+      {
+        url: "https://www.salman-karima.com/images/thumbnail.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Salman & Karima",
+      },
+    ],
+  },
+};
+
 export default async function SlugPage({ params }: PageProps) {
   const { slug } = await params;
   const supabase = await createClient();

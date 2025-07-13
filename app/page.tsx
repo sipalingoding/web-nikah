@@ -20,6 +20,7 @@ interface Guest {
 //   return `${base}?${params.toString()}`;
 // }
 
+
 export default function Home({ guest }: { guest: Guest }) {
   const dataImage = [
     {
