@@ -18,7 +18,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "https://www.salman-karima.com/images/tumbnail.png",
+        url: "https://salman-karima.com/images/tumbnail.png",
         width: 1200,
         height: 630,
         alt: "Salman & Karima",
