@@ -473,7 +473,12 @@ export default function Home({ guest }: { guest: Guest }) {
                 </span>
               </button>
               {isSendClick && (
-                <div className="flex gap-2">
+                <div
+                  className="flex gap-2"
+                  data-aos="fade-down"
+                  data-aos-easing="linear"
+                  data-aos-duration="1500"
+                >
                   <Image
                     src={"/logo-mandiri.png"}
                     width={150}
