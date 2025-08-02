@@ -152,7 +152,7 @@ export default function Home({ guest }: { guest: Guest }) {
         setCurrentIndex((prev) => (prev + 1) % dataImage.length);
         setCurrenIndexBride((prev) => (prev + 1) % dataBride.length);
         setCurrenIndexGroom((prev) => (prev + 1) % dataGroom.length);
-      }, 1500);
+      }, 2000);
     }, 2000); // Wait 2 seconds before starting rotation
 
     return () => {
