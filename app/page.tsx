@@ -230,6 +230,7 @@ export default function Home({ guest }: { guest: Guest }) {
               sizes="100vw"
               className="w-full h-auto"
               priority
+              loading="eager"
             />
           </div>
         </div>
