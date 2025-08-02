@@ -20,7 +20,6 @@ interface Guest {
 //   return `${base}?${params.toString()}`;
 // }
 
-
 export default function Home({ guest }: { guest: Guest }) {
   const dataImage = [
     {
@@ -121,8 +120,11 @@ export default function Home({ guest }: { guest: Guest }) {
       });
     };
 
-    // Preload all images
-    imageSources.forEach((src) => preloadImage(src));
+    Promise.all(dataImage.map((img) => preloadImage(img.src))).then(() => {
+      imageSources
+        .filter((src) => !dataImage.some((img) => img.src === src))
+        .forEach((src) => preloadImage(src));
+    });
 
     // Fallback: if images take too long, stop loading after 10 seconds
     const fallbackTimer = setTimeout(() => {
@@ -227,6 +229,7 @@ export default function Home({ guest }: { guest: Guest }) {
               height={0}
               sizes="100vw"
               className="w-full h-auto"
+              priority
             />
           </div>
         </div>
