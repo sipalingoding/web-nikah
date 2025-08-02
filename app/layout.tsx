@@ -22,6 +22,7 @@ export const metadata: Metadata = {
   description: "Undangan pernikahan digital untuk Karima & Salman",
   icons: {
     icon: "/favicon.ico",
+    apple: "/apple-icon.png",
   },
 };
 
