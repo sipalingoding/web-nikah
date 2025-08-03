@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: PageProps) {
       site_name: "Undangan Pernikahan Salman & Karima",
       images: [
         {
-          url: "https://salman-karima.com/images/thumbnail.jpg",
+          url: "https://salman-karima.com/images/thumbnail.jpeg",
           width: 1200,
           height: 630,
           alt: "Salman & Karima",
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: PageProps) {
       card: "summary_large_image",
       title: "Undangan Pernikahan Salman & Karima",
       description: "Merupakan suatu kehormatan bagi kami mengundang Anda.",
-      images: ["https://salman-karima.com/images/thumbnail.jpg"],
+      images: ["https://salman-karima.com/images/thumbnail.jpeg"],
     },
   };
 }
