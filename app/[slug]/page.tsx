@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: PageProps) {
     openGraph: {
       title: "Undangan Pernikahan Salman & Karima",
       description: "Merupakan suatu kehormatan bagi kami mengundang Anda.",
-      url: `www.salman-karima.com/${slug}`,
+      url: `https://salman-karima.com/${slug}`,
       type: "website",
       site_name: "Undangan Pernikahan Salman & Karima",
       images: [
