@@ -1,62 +1,45 @@
 import { notFound } from "next/navigation";
 import { createClient } from "../../lib/supabase";
 import Home from "../page";
-import type { Metadata } from "next";
 
-type PageProps = {
-  params: { slug: string };
-};
+interface PageProps {
+  params: Promise<{
+    slug: string;
+  }>;
+}
 
-type MetadataProps = {
-  params: { slug: string };
-};
-
-// Dynamic metadata
-export async function generateMetadata({
-  params,
-}: MetadataProps): Promise<Metadata> {
-  const supabase = await createClient();
-  const { data: guest, error } = await supabase
-    .from("tamu")
-    .select("nama")
-    .eq("slug", params.slug)
-    .single();
-
-  if (!guest || error) {
-    return {
+export async function generateMetadata({ params }: PageProps) {
+  const { slug } = await params;
+  return {
+    title: "Undangan Pernikahan Salman & Karima",
+    description: "Merupakan suatu kehormatan bagi kami mengundang Anda.",
+    openGraph: {
       title: "Undangan Pernikahan Salman & Karima",
       description: "Merupakan suatu kehormatan bagi kami mengundang Anda.",
-    };
-  }
-
-  return {
-    title: `Undangan Pernikahan Salman & Karima untuk ${guest.nama}`,
-    description: `Merupakan suatu kehormatan bagi kami mengundang ${guest.nama} untuk hadir dalam pernikahan kami.`,
-    openGraph: {
-      title: `Undangan Pernikahan Salman & Karima untuk ${guest.nama}`,
-      description: `Merupakan suatu kehormatan bagi kami mengundang ${guest.nama} untuk hadir.`,
+      url: `www.salman-karima.com/${slug}`,
       type: "website",
-      url: `https://salman-karima.com/${params.slug}`,
+      site_name: "Undangan Pernikahan Salman & Karima",
       images: [
         {
           url: "https://salman-karima.com/images/thumbnail.jpg",
           width: 1200,
           height: 630,
           alt: "Salman & Karima",
+          type: "image/jpeg",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: `Undangan Pernikahan Salman & Karima untuk ${guest.nama}`,
-      description: `Merupakan suatu kehormatan bagi kami mengundang ${guest.nama} untuk hadir.`,
+      title: "Undangan Pernikahan Salman & Karima",
+      description: "Merupakan suatu kehormatan bagi kami mengundang Anda.",
       images: ["https://salman-karima.com/images/thumbnail.jpg"],
     },
   };
 }
 
 export default async function SlugPage({ params }: PageProps) {
-  const { slug } = params;
+  const { slug } = await params;
   const supabase = await createClient();
 
   const { data: guest, error } = await supabase
@@ -64,6 +47,8 @@ export default async function SlugPage({ params }: PageProps) {
     .select("nama, slug")
     .eq("slug", slug)
     .single();
+
+  console.log(guest);
 
   if (!guest || error) {
     return notFound();
