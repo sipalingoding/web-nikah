@@ -286,7 +286,7 @@ export default function Home({ guest }: { guest: Guest }) {
             </div>
           </div>
           <div
-            className="p-8 h-screen flex flex-col justify-around items-center"
+            className="p-8 h-screen flex flex-col justify-around items-center text-cokelatTua"
             style={{
               backgroundImage: "url('/bg-content.png')",
               backgroundSize: "cover",
