@@ -28,13 +28,13 @@ export async function generateMetadata({
   }
 
   return {
-    title: `Undangan Pernikahan Salman & Karima untuk ${guest?.nama}`,
-    description: `Merupakan suatu kehormatan bagi kami mengundang ${guest?.nama} untuk hadir dalam pernikahan kami.`,
+    title: `Undangan Pernikahan Salman & Karima untuk ${guest.nama}`,
+    description: `Merupakan suatu kehormatan bagi kami mengundang ${guest.nama} untuk hadir dalam pernikahan kami.`,
     openGraph: {
-      title: `Undangan Pernikahan Salman & Karima untuk ${guest?.nama}`,
-      description: `Merupakan suatu kehormatan bagi kami mengundang ${guest?.nama} untuk hadir.`,
+      title: `Undangan Pernikahan Salman & Karima untuk ${guest.nama}`,
+      description: `Merupakan suatu kehormatan bagi kami mengundang ${guest.nama} untuk hadir.`,
       type: "website",
-      url: `https://salman-karima.com/${params?.slug}`,
+      url: `https://salman-karima.com/${params.slug}`,
       images: [
         {
           url: "https://salman-karima.com/images/thumbnail.jpg",
@@ -46,8 +46,8 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `Undangan Pernikahan Salman & Karima untuk ${guest?.nama}`,
-      description: `Merupakan suatu kehormatan bagi kami mengundang ${guest?.nama} untuk hadir.`,
+      title: `Undangan Pernikahan Salman & Karima untuk ${guest.nama}`,
+      description: `Merupakan suatu kehormatan bagi kami mengundang ${guest.nama} untuk hadir.`,
       images: ["https://salman-karima.com/images/thumbnail.jpg"],
     },
   };
