@@ -3,12 +3,18 @@ import { createClient } from "../../lib/supabase";
 import Home from "../page";
 import type { Metadata } from "next";
 
+type PageProps = {
+  params: { slug: string };
+};
+
+type MetadataProps = {
+  params: { slug: string };
+};
+
 // Dynamic metadata
 export async function generateMetadata({
   params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
+}: MetadataProps): Promise<Metadata> {
   const supabase = await createClient();
   const { data: guest, error } = await supabase
     .from("tamu")
@@ -49,11 +55,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function SlugPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+export default async function SlugPage({ params }: PageProps) {
   const { slug } = params;
   const supabase = await createClient();
 
