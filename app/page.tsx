@@ -372,7 +372,7 @@ export default function Home({ guest }: { guest: Guest }) {
               <span>September</span>
             </div>
             <span className="font-marcellus" data-aos="zoom-in-up">
-              09.00 s/d 13.30 WIB
+              08.00 s/d 13.30 WIB
             </span>
           </div>
           <div
