@@ -4,7 +4,6 @@ import { Marcellus } from "next/font/google";
 import { Poppins } from "next/font/google";
 import "animate.css";
 import "aos/dist/aos.css";
-import Head from "next/head";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -33,8 +32,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://salman-karima.com/thumbnail.jpg",
-        width: 800,
-        height: 800,
+        width: 1200,
+        height: 630,
         alt: "Karima & Salman Wedding Thumbnail",
       },
     ],
@@ -50,8 +49,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
-        {/* ✅ Tambahin Open Graph tags manual */}
+      <head>
         <meta
           property="og:title"
           content="Wedding Invitation Karima & Salman"
@@ -66,7 +64,8 @@ export default function RootLayout({
         />
         <meta property="og:url" content="https://salman-karima.com" />
         <meta property="og:type" content="website" />
-      </Head>
+        <meta name="twitter:card" content="summary_large_image" />
+      </head>
       <body
         className={`${marcellus.variable} ${poppins.variable} font-poppins font-marcellus antialiased bg-[#e3ddd6]`}
       >
