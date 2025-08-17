@@ -18,15 +18,15 @@ const marcellus = Marcellus({
 });
 
 export const metadata: Metadata = {
-  title: "Wedding Invitation Karima & Salman",
-  description: "Undangan pernikahan digital untuk Karima & Salman",
+  title: "The Wedding of Karima & Salman",
+  description: "Sabtu, 6 September 2025",
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-icon.png",
   },
   openGraph: {
-    title: "Wedding Invitation Karima & Salman",
-    description: "Undangan pernikahan digital untuk Karima & Salman",
+    title: "The Wedding of Karima & Salman",
+    description: "Sabtu, 6 September 2025",
     url: "https://salman-karima.com",
     siteName: "Karima & Salman Wedding",
     images: [
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
         url: "https://salman-karima.com/thumbnail.jpg",
         width: 500,
         height: 500,
-        alt: "Karima & Salman Wedding Thumbnail",
+        alt: "The Wedding of Karima & Salman",
       },
     ],
     locale: "id_ID",
@@ -50,14 +50,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta
-          property="og:title"
-          content="Wedding Invitation Karima & Salman"
-        />
-        <meta
-          property="og:description"
-          content="Undangan pernikahan digital untuk Karima & Salman"
-        />
+        <meta property="og:title" content="The Wedding of Karima & Salman" />
+        <meta property="og:description" content="Sabtu, 6 September 2025" />
         <meta
           property="og:image"
           content="https://salman-karima.com/thumbnail.jpg"
