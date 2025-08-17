@@ -24,6 +24,22 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
     apple: "/apple-icon.png",
   },
+  openGraph: {
+    title: "Wedding Invitation Karima & Salman",
+    description: "Undangan pernikahan digital untuk Karima & Salman",
+    url: "https://salman-karima.com",
+    siteName: "Karima & Salman Wedding",
+    images: [
+      {
+        url: "https://salman-karima.com/thumbnail.jpg",
+        width: 800,
+        height: 800,
+        alt: "Karima & Salman Wedding Thumbnail",
+      },
+    ],
+    locale: "id_ID",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
